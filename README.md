@@ -8,8 +8,8 @@ SQL portfolio project to show schema design + queries. **Readable on GitHub** an
 - Schema: [`schema.sql`](./schema.sql)
 - Seed data: [`seed.sql`](./seed.sql)
 - Queries: [`queries/`](./queries)
-- (Optional) CSV previews: [`data/`](./data)
-- (Optional) Screenshots: [`screenshots/`](./screenshots)
+- CSV previews: [`data/`](./data)
+- Screenshots: [`screenshots/`](./screenshots)
 
 ---
 
