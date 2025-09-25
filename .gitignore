@@ -1,0 +1,26 @@
+.DS_Store
+Thumbs.db
+
+.vscode/
+.idea/
+*.iml
+
+.venv/
+__pycache__/
+node_modules/
+
+.env
+.env.local
+.env.*
+*.env
+!.env.example    # keep a template
+
+*.pgdump
+*.dump
+*.backup
+*.bak
+*.log
+
+db-data/
+pgdata/
+postgres-data/
