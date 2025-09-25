@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict Zvh2JxdV5oEWauPKgICZS6Al1UColj4coUNi90GjmsqJfvoXPISqIWmEYo83SkW
+\restrict LAhr7Uf4BXVlZXDONnXkcJbKsNfLKD9qz8T227lWbjPJvAqqwfNNUazZ7COOTVJ
 
 -- Dumped from database version 16.10 (Debian 16.10-1.pgdg13+1)
 -- Dumped by pg_dump version 17.6
@@ -61,10 +61,54 @@ ALTER SEQUENCE public.beekeepers_id_seq OWNED BY public.beekeepers.id;
 
 
 --
+-- Name: hives; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.hives (
+    id integer NOT NULL,
+    beekeeper_id integer NOT NULL,
+    location_id integer NOT NULL,
+    hive_type text NOT NULL,
+    active boolean DEFAULT true NOT NULL
+);
+
+
+ALTER TABLE public.hives OWNER TO postgres;
+
+--
+-- Name: hives_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.hives_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.hives_id_seq OWNER TO postgres;
+
+--
+-- Name: hives_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.hives_id_seq OWNED BY public.hives.id;
+
+
+--
 -- Name: beekeepers id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.beekeepers ALTER COLUMN id SET DEFAULT nextval('public.beekeepers_id_seq'::regclass);
+
+
+--
+-- Name: hives id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.hives ALTER COLUMN id SET DEFAULT nextval('public.hives_id_seq'::regclass);
 
 
 --
@@ -76,8 +120,31 @@ ALTER TABLE ONLY public.beekeepers
 
 
 --
+-- Name: hives hives_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.hives
+    ADD CONSTRAINT hives_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: idx_hives_beekeeper_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_hives_beekeeper_id ON public.hives USING btree (beekeeper_id);
+
+
+--
+-- Name: hives fk_beekeeper_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.hives
+    ADD CONSTRAINT fk_beekeeper_id FOREIGN KEY (beekeeper_id) REFERENCES public.beekeepers(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
-\unrestrict Zvh2JxdV5oEWauPKgICZS6Al1UColj4coUNi90GjmsqJfvoXPISqIWmEYo83SkW
+\unrestrict LAhr7Uf4BXVlZXDONnXkcJbKsNfLKD9qz8T227lWbjPJvAqqwfNNUazZ7COOTVJ
 
